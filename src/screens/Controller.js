@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./home/Home";
 import Details from "../details/Details";
+import Checkout from "./checkout/Checkout";
 
 class Controller extends Component {
   constructor() {
@@ -21,6 +22,11 @@ class Controller extends Component {
           <Route
             path="/restaurant/:id"
             render={props => <Details {...props} baseUrl={this.baseUrl} />}
+          />
+          <Route
+            exact
+            path="/checkout"
+            render={props => <Checkout {...props} baseUrl={this.baseUrl} />}
           />
         </div>
       </BrowserRouter>

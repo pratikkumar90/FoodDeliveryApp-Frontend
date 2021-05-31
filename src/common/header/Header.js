@@ -26,6 +26,7 @@ import {
 import Modal from "react-modal";
 
 import TypoGraphy from "@material-ui/core/Typography";
+import { Redirect } from "react-router-dom";
 
 // Custom Styles to over ride material ui default styles
 const styles = theme => ({
@@ -118,8 +119,8 @@ class Header extends Component {
       passwordRequired: "display-none",
       snackBarOpen: false,
       snackBarMessage: "",
-      loggedIn: false,
-      loggedInName: "",
+      loggedIn: sessionStorage.getItem("access-token") === null ? false : true,
+      loggedInName: sessionStorage.getItem("customer-name"),
       invalidEmailFormat: "display-none",
       passwordFormatRequired: "display-none",
       contactHelpText: "display-none",
@@ -471,9 +472,6 @@ class Header extends Component {
           isMenuOpen: !that.state.isMenuOpen
         });
 
-        if (that.props.logoutRedirect) {
-          that.props.logoutRedirect();
-        }
       }
     });
 
