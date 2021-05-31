@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Header from "../header/Header";
+import Header from "../common/header/Header";
 
 class Controller extends Component {
   render() {
