@@ -450,9 +450,6 @@ class Header extends Component {
   };
 
   profileButtonClickHandler = event => {
-    // this.state.anchorEl === null
-    //   ? this.setState({ anchorEl: null })
-    //   : this.setState({ anchorEl: event.currentTarget });
     this.setState({
       anchorEl: event.currentTarget,
       isMenuOpen: !this.state.isMenuOpen
