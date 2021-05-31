@@ -103,8 +103,8 @@ class Home extends Component {
     xhrRestaurant.send(data);
   }
 
-  restaurantCardClicked = () => {
-    // do nothiing for now
+  restaurantCardClicked = id => {
+    this.props.history.push("/restaurant/" + id);
   };
 
   searchRestaurants = (searchRestaurant, searchOccured) => {
@@ -139,6 +139,7 @@ class Home extends Component {
         <Header
           baseUrl={this.props.baseUrl}
           searchRestaurants={this.searchRestaurants}
+          showHeaderSearchBox={true}
         ></Header>
         <div className="flex-container">
           <Grid

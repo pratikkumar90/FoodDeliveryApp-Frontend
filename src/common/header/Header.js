@@ -527,19 +527,21 @@ class Header extends Component {
             htmlColor="white"
           />
 
-          <span className="application-header-searchbox">
-            <Input
-              className={classes.searchText}
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon id="search-icon" htmlColor="white"></SearchIcon>
-                </InputAdornment>
-              }
-              fullWidth={true}
-              placeholder="Search by Restaurant Name"
-              onChange={this.inputSearchChangeHandler}
-            />
-          </span>
+          {this.props.showHeaderSearchBox === true && (
+            <span className="application-header-searchbox">
+              <Input
+                className={classes.searchText}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon id="search-icon" htmlColor="white"></SearchIcon>
+                  </InputAdornment>
+                }
+                fullWidth={true}
+                placeholder="Search by Restaurant Name"
+                onChange={this.inputSearchChangeHandler}
+              />
+            </span>
+          )}
 
           {this.state.loggedIn !== true ? (
             <Button
