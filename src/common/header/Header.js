@@ -288,7 +288,7 @@ class Header extends Component {
           }
         }
       });
-      xhrLogin.open("POST", "http://localhost:8080/api/" + "customer/login");
+      xhrLogin.open("POST", this.props.baseUrl + "customer/login");
       xhrLogin.setRequestHeader(
         "Authorization",
         "Basic " +
@@ -442,7 +442,7 @@ class Header extends Component {
           }
         }
       });
-      xhrSignUp.open("POST", "http://localhost:8080/api/" + "customer/signup");
+      xhrSignUp.open("POST", this.props.baseUrl + "customer/signup");
       xhrSignUp.setRequestHeader("Content-Type", "application/json");
       xhrSignUp.setRequestHeader("Cache-Control", "no-cache");
       xhrSignUp.send(dataSignUp);
@@ -477,12 +477,43 @@ class Header extends Component {
       }
     });
 
-    xhrLogout.open("POST", "http://localhost:8080/api/" + "customer/logout");
+    xhrLogout.open("POST", this.props.baseUrl + "customer/logout");
     xhrLogout.setRequestHeader(
       "authorization",
       "Bearer " + sessionStorage.getItem("access-token")
     );
     xhrLogout.send(logoutData);
+  };
+
+  inputSearchChangeHandler = event => {
+    let searchOccured = true;
+    if (!(event.target.value === "")) {
+      let restaurantData = null;
+      let that = this;
+      let xhrSearchRestaurant = new XMLHttpRequest();
+
+      xhrSearchRestaurant.addEventListener("readystatechange", function() {
+        if (
+          xhrSearchRestaurant.readyState === 4 &&
+          xhrSearchRestaurant.status === 200
+        ) {
+          var restaurant = JSON.parse(this.responseText).restaurants;
+          that.props.searchRestaurants(restaurant, searchOccured);
+        }
+      });
+
+      xhrSearchRestaurant.open(
+        "GET",
+        this.props.baseUrl + "restaurant/name/" + event.target.value
+      );
+      xhrSearchRestaurant.setRequestHeader("Content-Type", "application/json");
+      xhrSearchRestaurant.setRequestHeader("Cache-Control", "no-cache");
+      xhrSearchRestaurant.send(restaurantData);
+    } else {
+      let restaurant = [];
+      searchOccured = false;
+      this.props.searchRestaurants(restaurant, searchOccured);
+    }
   };
 
   render() {
