@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./home/Home";
 import Details from "../details/Details";
 import Checkout from "./checkout/Checkout";
+import Profile from "./profile/Profile";
 
 class Controller extends Component {
   constructor() {
@@ -27,6 +28,10 @@ class Controller extends Component {
             exact
             path="/checkout"
             render={props => <Checkout {...props} baseUrl={this.baseUrl} />}
+          />
+          <Route
+            path="/profile"
+            render={props => <Profile {...props} baseUrl={this.baseUrl} />}
           />
         </div>
       </BrowserRouter>

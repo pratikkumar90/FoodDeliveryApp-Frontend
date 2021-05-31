@@ -19,51 +19,42 @@ import {
   Snackbar,
   Menu,
   MenuList,
-  Link,
   MenuItem
 } from "@material-ui/core";
 
 import Modal from "react-modal";
 
 import TypoGraphy from "@material-ui/core/Typography";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-// Custom Styles to over ride material ui default styles
 const styles = theme => ({
   searchText: {
-    //Style for Search box
     color: "white",
     "&:after": {
       borderBottom: "2px solid white"
     }
   },
   loginButton: {
-    //Style for Login Button
     "font-weight": 400,
     margin: "8px 8px 8px 8px"
   },
   formButton: {
-    //Style for the Form Buttons
     "font-weight": 400,
     "margin-left": "37%"
   },
   tab: {
-    // Tab Styling
     "font-weight": 400
   },
   formControl: {
-    // Form Control Styling
     width: "100%"
   },
   profileButton: {
-    // Profile Button Styling
     color: "#c2c2c2",
     "text-transform": "none",
     "font-weight": 400,
     padding: "8px 8px 8px 8px"
   },
   menuItems: {
-    //Style for the menu items
     "text-decoration": "none",
     color: "black",
     "text-decoration-underline": "none",
@@ -71,12 +62,10 @@ const styles = theme => ({
     "padding-bottom": "0px"
   },
   menuList: {
-    //Styling for the menulist component
     padding: "0px"
   }
 });
 const customStyles = {
-  // Style for the Modal
   content: {
     top: "50%",
     left: "50%",
@@ -471,7 +460,6 @@ class Header extends Component {
           loggedIn: false,
           isMenuOpen: !that.state.isMenuOpen
         });
-
       }
     });
 
@@ -569,25 +557,23 @@ class Header extends Component {
           <Menu
             id="profile-menu"
             anchorEl={this.state.anchorEl}
-            anchorPosition="right"
             open={this.state.isMenuOpen}
             onClose={this.profileButtonClickHandler}
           >
             <MenuList className={classes.menuList}>
-              <Link
-                to={"/profile"}
+              <MenuItem
                 className={classes.menuItems}
-                underline="none"
-                color={"default"}
+                onClick={this.onMyProfileClicked}
+                disableGutters={false}
               >
-                <MenuItem
-                  className={classes.menuItems}
-                  onClick={this.onMyProfileClicked}
-                  disableGutters={false}
+                <Link
+                  to={"/profile"}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
-                  My profile
-                </MenuItem>
-              </Link>
+                  My Profile
+                </Link>
+              </MenuItem>
+
               <MenuItem
                 className="menu-items"
                 onClick={this.onLogOutClickHandler}
